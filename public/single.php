@@ -16,7 +16,7 @@
 
         <div class="album py-5 bg-light">
             <div class="row">
-                Content of this project
+                Content of this project single
             </div>
         </div>
     </div>

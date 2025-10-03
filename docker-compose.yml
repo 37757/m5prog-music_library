@@ -26,7 +26,8 @@ services:
         volumes:
             - './:/var/www/html'
         environment:
-            MYSQL_DATABASE: '${DB_NAME}'
+        
+            MYSQL_DATABASE: '${DB_SCHEMA_NAME}'
             MYSQL_USER: '${DB_USERNAME}'
             MYSQL_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASSWORD}'
