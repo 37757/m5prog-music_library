@@ -1,7 +1,9 @@
 <?php
 include_once __DIR__ . '/../views/navigation.php';
+require_once ('src/database.php');
 ?>
 <html>
+
 <head>
     <title>Music Library</title>
     <!-- ik laad op dit moment een simpele bootstrap css library -->
@@ -18,6 +20,19 @@ include_once __DIR__ . '/../views/navigation.php';
             Header information
         </header>
 
+        <div>
+            <?php
+            $query = 'SELECT * FROM Songs ORDER BY title';
+            $stmt = $connection->prepare($query);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            while ($single = mysqli_fetch_assoc($result)) {
+                print_r($single);
+            }
+            ?>
+
+        </div>
+
         <div class="album py-5 bg-light">
             <div class="row">
                 Content of this project index
@@ -30,4 +45,5 @@ include_once __DIR__ . '/../views/navigation.php';
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 </body>
+
 </html>
