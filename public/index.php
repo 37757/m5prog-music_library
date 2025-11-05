@@ -1,3 +1,6 @@
+<?php
+include_once __DIR__ . '/../views/navigation.php';
+?>
 <html>
 <head>
     <title>Music Library</title>
