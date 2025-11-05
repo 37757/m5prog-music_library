@@ -1,3 +1,8 @@
+<?php
+include_once __DIR__ . '/../views/navigation.php';
+require_once ('src/database.php');
+?>
+
 <html>
 <head>
     <title>Music Library</title>
@@ -11,10 +16,7 @@
 
 <body>
     <div class="container">
-        <header>
-            Header information
-        </header>
-
+          
         <div class="album py-5 bg-light">
             <div class="row">
                 Content of this project single

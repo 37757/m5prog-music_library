@@ -16,22 +16,42 @@ require_once ('src/database.php');
 
 <body>
     <div class="container">
-        <header>
-            Header information
-        </header>
-
-        <div>
             <?php
-            $query = 'SELECT * FROM Songs ORDER BY title';
+            $query = "SELECT s.title, s.release_date, s.duration, s.image, 
+               a.name AS artist, g.name AS genre
+        FROM singles s
+        JOIN artists a ON s.artist_id = a.artist_id
+        JOIN genres g ON s.genre_id = g.genre_id";
             $stmt = $connection->prepare($query);
             $stmt->execute();
             $result = $stmt->get_result();
-            while ($single = mysqli_fetch_assoc($result)) {
-                print_r($single);
-            }
             ?>
 
-        </div>
+           <?php foreach ($result as $single): ?>
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">
+                        <?php echo ($single['title']); ?>
+                    </h4>
+                </div>
+
+                <div class="card-body">
+                    <p><strong>Artist:</strong> <?php echo ($single['artist']); ?></p>
+                    <p><strong>Genre:</strong> <?php echo ($single['genre']); ?></p>
+                    <p><strong>Release Date:</strong> <?php echo ($single['release_date']); ?></p>
+                </div>
+
+                <div class="card-img">
+                    <img class="card-img-top"
+                         src="<?php echo ($single['image']); ?>"
+                         alt="<?php echo ($single['title']); ?>">
+                </div>
+
+                <a href="/single.php?singleid=<?php echo ($single['id']); ?>"
+                   type="button"
+                   class="btn btn-sm btn-outline-secondary">Bekijk</a>
+            </div>
+        <?php endforeach; ?>
 
         <div class="album py-5 bg-light">
             <div class="row">
